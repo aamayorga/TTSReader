@@ -15,7 +15,9 @@ class ViewController: UIViewController, Storyboarded {
     @IBAction func test(_ sender: UIButton) {
         print("Test")
         let mercuryClient = MercuryClient()
-        mercuryClient.getWebArticle()
+        mercuryClient.getWebArticle { (success, data, error) in
+            print(success)
+        }
     }
     
     override func viewDidLoad() {

@@ -34,7 +34,7 @@ class NetworkManager: NSObject {
                 return
             }
             
-            print(data)
+            completionHandlerForGET(data as AnyObject, nil)
         }
         
         urlTask.resume()
