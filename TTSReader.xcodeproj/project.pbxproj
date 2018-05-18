@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B2CFF1220ADB86A0021C795 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2CFF1120ADB86A0021C795 /* ListTableViewController.swift */; };
 		4B4A2E5C20AC527D00F59C7D /* MercuryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A2E5B20AC527D00F59C7D /* MercuryAPI.swift */; };
+		4B4A2E6020AC76D900F59C7D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A2E5F20AC76D900F59C7D /* CoreDataManager.swift */; };
 		4B4B5AB920AB16D9004ACA6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B5AB820AB16D9004ACA6C /* AppDelegate.swift */; };
 		4B4B5ABB20AB16D9004ACA6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B5ABA20AB16D9004ACA6C /* ViewController.swift */; };
 		4B4B5ABE20AB16D9004ACA6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B5ABC20AB16D9004ACA6C /* Main.storyboard */; };
@@ -24,7 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B2CFF1120ADB86A0021C795 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		4B4A2E5B20AC527D00F59C7D /* MercuryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MercuryAPI.swift; sourceTree = "<group>"; };
+		4B4A2E5F20AC76D900F59C7D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		4B4B5AB520AB16D9004ACA6C /* TTSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4B5AB820AB16D9004ACA6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B4B5ABA20AB16D9004ACA6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +68,14 @@
 			path = Mercury;
 			sourceTree = "<group>";
 		};
+		4B4A2E5E20AC76C400F59C7D /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				4B4A2E5F20AC76D900F59C7D /* CoreDataManager.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
 		4B4B5AAC20AB16D9004ACA6C = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +95,7 @@
 		4B4B5AB720AB16D9004ACA6C /* TTSReader */ = {
 			isa = PBXGroup;
 			children = (
+				4B4A2E5E20AC76C400F59C7D /* Core Data */,
 				4B4B5ADA20AB1B9D004ACA6C /* Network */,
 				4B4B5AD920AB1A2A004ACA6C /* ViewControllers */,
 				4B4B5AD820AB1A02004ACA6C /* Coordinators */,
@@ -150,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				4B4B5ABA20AB16D9004ACA6C /* ViewController.swift */,
+				4B2CFF1120ADB86A0021C795 /* ListTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -239,7 +253,9 @@
 				4B4B5AD220AB17E2004ACA6C /* MainCoordinator.swift in Sources */,
 				4B4B5ABB20AB16D9004ACA6C /* ViewController.swift in Sources */,
 				4B4B5ADC20AB1BBA004ACA6C /* NetworkManager.swift in Sources */,
+				4B2CFF1220ADB86A0021C795 /* ListTableViewController.swift in Sources */,
 				4B4B5ADE20AB2967004ACA6C /* MercuryClient.swift in Sources */,
+				4B4A2E6020AC76D900F59C7D /* CoreDataManager.swift in Sources */,
 				4B4B5AD020AB1746004ACA6C /* Storyboarded.swift in Sources */,
 				4B4B5AB920AB16D9004ACA6C /* AppDelegate.swift in Sources */,
 				4B4A2E5C20AC527D00F59C7D /* MercuryAPI.swift in Sources */,

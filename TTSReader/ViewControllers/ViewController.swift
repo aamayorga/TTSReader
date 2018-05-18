@@ -13,11 +13,7 @@ class ViewController: UIViewController, Storyboarded {
     weak var coordinator: MainCoordinator?
     
     @IBAction func test(_ sender: UIButton) {
-        print("Test")
-        let mercuryClient = MercuryClient()
-        mercuryClient.getWebArticle { (success, data, error) in
-            print(success)
-        }
+        coordinator?.getArticle()
     }
     
     override func viewDidLoad() {
