@@ -20,8 +20,9 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        getArticle()
+        // getArticle()
         getFetchController()
+        getShareUserDefaults()
         
         let vc = ListTableViewController.instantiate()
         vc.coordinator = self
@@ -39,6 +40,13 @@ class MainCoordinator: Coordinator {
             }
             
             self.saveArticle(data!)
+        }
+    }
+    
+    func getShareUserDefaults() {
+        let urlArray = UserDefaults(suiteName: "group.amayorga")?.value(forKey: "temporaryUrlArray") as! [String]
+        for url in urlArray {
+            print(url)
         }
     }
     

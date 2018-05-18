@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4B2CFF1220ADB86A0021C795 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2CFF1120ADB86A0021C795 /* ListTableViewController.swift */; };
+		4B2CFF1A20AE69E00021C795 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2CFF1920AE69E00021C795 /* ShareViewController.swift */; };
+		4B2CFF1D20AE69E00021C795 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2CFF1B20AE69E00021C795 /* MainInterface.storyboard */; };
+		4B2CFF2120AE69E00021C795 /* TTSShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4B2CFF1720AE69E00021C795 /* TTSShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4B2CFF3320AEEE9C0021C795 /* TTSReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B5ABF20AB16D9004ACA6C /* TTSReader.xcdatamodeld */; };
 		4B4A2E5C20AC527D00F59C7D /* MercuryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A2E5B20AC527D00F59C7D /* MercuryAPI.swift */; };
 		4B4A2E6020AC76D900F59C7D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A2E5F20AC76D900F59C7D /* CoreDataManager.swift */; };
 		4B4B5AB920AB16D9004ACA6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B5AB820AB16D9004ACA6C /* AppDelegate.swift */; };
@@ -25,8 +29,38 @@
 		4B4B5AE220AB3233004ACA6C /* MercuryJSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B5AE120AB3233004ACA6C /* MercuryJSONResponse.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4B2CFF1F20AE69E00021C795 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B4B5AAD20AB16D9004ACA6C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4B2CFF1620AE69E00021C795;
+			remoteInfo = TTSShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4B2CFF2520AE69E00021C795 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4B2CFF2120AE69E00021C795 /* TTSShareExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4B2CFF1120ADB86A0021C795 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
+		4B2CFF1720AE69E00021C795 /* TTSShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TTSShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B2CFF1920AE69E00021C795 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		4B2CFF1C20AE69E00021C795 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		4B2CFF1E20AE69E00021C795 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B2CFF2620AE6CAA0021C795 /* TTSReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TTSReader.entitlements; sourceTree = "<group>"; };
+		4B2CFF2720AE6CBC0021C795 /* TTSShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TTSShareExtension.entitlements; sourceTree = "<group>"; };
 		4B4A2E5B20AC527D00F59C7D /* MercuryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MercuryAPI.swift; sourceTree = "<group>"; };
 		4B4A2E5F20AC76D900F59C7D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		4B4B5AB520AB16D9004ACA6C /* TTSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +81,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4B2CFF1420AE69E00021C795 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B4B5AB220AB16D9004ACA6C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -57,6 +98,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B2CFF1820AE69E00021C795 /* TTSShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				4B2CFF2720AE6CBC0021C795 /* TTSShareExtension.entitlements */,
+				4B2CFF1920AE69E00021C795 /* ShareViewController.swift */,
+				4B2CFF1B20AE69E00021C795 /* MainInterface.storyboard */,
+				4B2CFF1E20AE69E00021C795 /* Info.plist */,
+			);
+			path = TTSShareExtension;
+			sourceTree = "<group>";
+		};
 		4B4A2E5D20AC542C00F59C7D /* Mercury */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				4B4B5AB720AB16D9004ACA6C /* TTSReader */,
+				4B2CFF1820AE69E00021C795 /* TTSShareExtension */,
 				4B4B5AB620AB16D9004ACA6C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				4B4B5AB520AB16D9004ACA6C /* TTSReader.app */,
+				4B2CFF1720AE69E00021C795 /* TTSShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +149,7 @@
 		4B4B5AB720AB16D9004ACA6C /* TTSReader */ = {
 			isa = PBXGroup;
 			children = (
+				4B2CFF2620AE6CAA0021C795 /* TTSReader.entitlements */,
 				4B4A2E5E20AC76C400F59C7D /* Core Data */,
 				4B4B5ADA20AB1B9D004ACA6C /* Network */,
 				4B4B5AD920AB1A2A004ACA6C /* ViewControllers */,
@@ -180,6 +235,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4B2CFF1620AE69E00021C795 /* TTSShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B2CFF2220AE69E00021C795 /* Build configuration list for PBXNativeTarget "TTSShareExtension" */;
+			buildPhases = (
+				4B2CFF1320AE69E00021C795 /* Sources */,
+				4B2CFF1420AE69E00021C795 /* Frameworks */,
+				4B2CFF1520AE69E00021C795 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TTSShareExtension;
+			productName = TTSShareExtension;
+			productReference = 4B2CFF1720AE69E00021C795 /* TTSShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		4B4B5AB420AB16D9004ACA6C /* TTSReader */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B4B5ACA20AB16DA004ACA6C /* Build configuration list for PBXNativeTarget "TTSReader" */;
@@ -187,10 +259,12 @@
 				4B4B5AB120AB16D9004ACA6C /* Sources */,
 				4B4B5AB220AB16D9004ACA6C /* Frameworks */,
 				4B4B5AB320AB16D9004ACA6C /* Resources */,
+				4B2CFF2520AE69E00021C795 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4B2CFF2020AE69E00021C795 /* PBXTargetDependency */,
 			);
 			name = TTSReader;
 			productName = TTSReader;
@@ -207,8 +281,21 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = AM;
 				TargetAttributes = {
+					4B2CFF1620AE69E00021C795 = {
+						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					4B4B5AB420AB16D9004ACA6C = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -226,11 +313,20 @@
 			projectRoot = "";
 			targets = (
 				4B4B5AB420AB16D9004ACA6C /* TTSReader */,
+				4B2CFF1620AE69E00021C795 /* TTSShareExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4B2CFF1520AE69E00021C795 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B2CFF1D20AE69E00021C795 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B4B5AB320AB16D9004ACA6C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -244,6 +340,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4B2CFF1320AE69E00021C795 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B2CFF3320AEEE9C0021C795 /* TTSReader.xcdatamodeld in Sources */,
+				4B2CFF1A20AE69E00021C795 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B4B5AB120AB16D9004ACA6C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -266,7 +371,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4B2CFF2020AE69E00021C795 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4B2CFF1620AE69E00021C795 /* TTSShareExtension */;
+			targetProxy = 4B2CFF1F20AE69E00021C795 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		4B2CFF1B20AE69E00021C795 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B2CFF1C20AE69E00021C795 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		4B4B5ABC20AB16D9004ACA6C /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -286,6 +407,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4B2CFF2320AE69E00021C795 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TTSShareExtension/TTSShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7HF92455SQ;
+				INFOPLIST_FILE = TTSShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.amayorga.TTSReader.TTSShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4B2CFF2420AE69E00021C795 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TTSShareExtension/TTSShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7HF92455SQ;
+				INFOPLIST_FILE = TTSShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.amayorga.TTSReader.TTSShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		4B4B5AC820AB16DA004ACA6C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -403,7 +564,9 @@
 		4B4B5ACB20AB16DA004ACA6C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TTSReader/TTSReader.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7HF92455SQ;
 				INFOPLIST_FILE = "$(SRCROOT)/TTSReader/Support/Info.plist";
@@ -421,7 +584,9 @@
 		4B4B5ACC20AB16DA004ACA6C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TTSReader/TTSReader.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7HF92455SQ;
 				INFOPLIST_FILE = "$(SRCROOT)/TTSReader/Support/Info.plist";
@@ -439,6 +604,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4B2CFF2220AE69E00021C795 /* Build configuration list for PBXNativeTarget "TTSShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B2CFF2320AE69E00021C795 /* Debug */,
+				4B2CFF2420AE69E00021C795 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4B4B5AB020AB16D9004ACA6C /* Build configuration list for PBXProject "TTSReader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

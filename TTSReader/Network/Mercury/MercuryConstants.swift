@@ -31,6 +31,6 @@ extension MercuryClient {
     
     struct MercuryParameterValues {
         // Website URL
-        static let webURL = "https://www.theverge.com/2018/5/1/17307690/marvel-avengers-infinity-war-ending"
+        static let webURL = "https://medium.com/ai-revolution/ai-revolution-101-8dce1d9cb62d"
     }
 }
