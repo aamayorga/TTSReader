@@ -9,6 +9,9 @@
 import UIKit
 import CoreData
 
+let UserDefaultSuiteName = "group.amayorga"
+let UserDefaultsKey = "temporaryUrlArray"
+
 class MainCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
@@ -20,9 +23,8 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        // getArticle()
-        getFetchController()
         getShareUserDefaults()
+        getFetchController()
         
         let vc = ListTableViewController.instantiate()
         vc.coordinator = self
@@ -31,23 +33,34 @@ class MainCoordinator: Coordinator {
         print(fetchedResultsController?.fetchedObjects)
     }
     
-    func getArticle() {
-        MercuryClient().getWebArticle { (success, data, error) in
+    func getArticle(_ articleUrl: String) {
+        MercuryClient().getWebArticle(articleUrl) { (success, data, error) in
             print(success)
             guard success else {
                 print(error!)
                 return
             }
-            
             self.saveArticle(data!)
+            self.deleteShareUserDefaults(articleUrl)
         }
     }
     
     func getShareUserDefaults() {
-        let urlArray = UserDefaults(suiteName: "group.amayorga")?.value(forKey: "temporaryUrlArray") as! [String]
+        let urlArray = UserDefaults(suiteName: UserDefaultSuiteName)?.value(forKey: UserDefaultsKey) as! [String]
+        guard urlArray != [] else {
+            print("Nothing in array")
+            return
+        }
         for url in urlArray {
+            getArticle(url)
             print(url)
         }
+    }
+    
+    func deleteShareUserDefaults(_ urlToDelete: String) {
+        var urlArray = UserDefaults(suiteName: UserDefaultSuiteName)?.value(forKey: UserDefaultsKey) as! [String]
+        urlArray.remove(at: urlArray.index(of: urlToDelete)!)
+        UserDefaults(suiteName: UserDefaultSuiteName)?.set(urlArray, forKey: UserDefaultsKey)
     }
     
     func getFetchController() {

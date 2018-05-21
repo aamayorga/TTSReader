@@ -12,9 +12,9 @@ class MercuryClient {
     
     let networkManager = NetworkManager()
     
-    func getWebArticle(/*_ url: String*/ completionHandlerForGetWebArticle: @escaping (_ success: Bool, _ webInfo: MercuryJSONResponse?, _ errorString: String?) -> Void) {
+    func getWebArticle(_ url: String, completionHandlerForGetWebArticle: @escaping (_ success: Bool, _ webInfo: MercuryJSONResponse?, _ errorString: String?) -> Void) {
         
-        let methodParameters = [MercuryParameterKeys.Url: MercuryParameterValues.webURL]
+        let methodParameters = [MercuryParameterKeys.Url: url]
         let url = mercuryUrlFromParameter(methodParameters)
         
         let request = NSMutableURLRequest(url: url)

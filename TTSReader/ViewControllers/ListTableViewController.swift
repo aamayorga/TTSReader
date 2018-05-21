@@ -26,7 +26,9 @@ class ListTableViewController: UITableViewController, Storyboarded {
     
     // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(tableView.cellForRow(at: indexPath)?.textLabel?.text)
+        tableView.deselectRow(at: indexPath, animated: true)
+        let article = coordinator?.fetchedResultsController.object(at: indexPath)
+        print(article?.title)
     }
 
     // MARK: - Table view data source
