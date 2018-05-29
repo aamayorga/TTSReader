@@ -1,0 +1,6 @@
+framework module Pods_TTSShareExtension {
+  umbrella header "Pods-TTSShareExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}

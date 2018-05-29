@@ -6,17 +6,28 @@
 //  Copyright © 2018 AM. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import AVFoundation
+import SwiftSoup
 
 let UserDefaultSuiteName = "group.amayorga"
 let UserDefaultsKey = "temporaryUrlArray"
 
-class MainCoordinator: Coordinator {
+class MainCoordinator: NSObject, Coordinator {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     var coreDataManager: CoreDataManager!
     var fetchedResultsController: NSFetchedResultsController<Article>!
+    weak var delegate: ListTableViewControllerDelegate?
+    
+    var wordsPerMinute: Float = 235.0 {
+        didSet {
+            let wordsPerSecondFormatter = NumberFormatter()
+            wordsPerSecondFormatter.roundingMode = .up
+            wordsPerSecond = Int(wordsPerSecondFormatter.string(for: (wordsPerMinute/60.0))!)!
+        }
+    }
+    var wordsPerSecond: Int = 0
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -28,9 +39,26 @@ class MainCoordinator: Coordinator {
         
         let vc = ListTableViewController.instantiate()
         vc.coordinator = self
-        navigationController.pushViewController(vc, animated: false)
+        vc.delegate = self
         
-        print(fetchedResultsController?.fetchedObjects)
+        navigationController.pushViewController(vc, animated: false)
+    }
+    
+    // MARK: Article functions
+    
+    func readArticle(_ articleToRead: Article) {
+        let vc = ReaderViewController.instantiate()
+        vc.coordinator = self
+        vc.article = articleToRead
+        vc.activatePlaybackCommands(true)
+        
+        let timeComponents = estimateArticleReadTime(articleToRead.wordCount)
+        
+        vc.articleTimeToRead.hour = timeComponents.hour
+        vc.articleTimeToRead.minute = timeComponents.minute
+        vc.articleTimeToRead.second = timeComponents.second
+        
+        navigationController.pushViewController(vc, animated: true)
     }
     
     func getArticle(_ articleUrl: String) {
@@ -43,6 +71,30 @@ class MainCoordinator: Coordinator {
             self.saveArticle(data!)
             self.deleteShareUserDefaults(articleUrl)
         }
+    }
+    
+    func estimateArticleReadTime(_ wordCount: Int32) -> NSDateComponents {
+        let time = Float(wordCount) / wordsPerMinute
+        var hours = 0
+        var minutes = Int(time)
+        if minutes > 60 {
+            hours = minutes / 60
+            minutes = minutes - (hours * 60)
+        }
+        let secondsFloat = (time - Float(minutes)) * 0.60
+        
+        let secondsFormatter = NumberFormatter()
+        secondsFormatter.maximumFractionDigits = 2
+        secondsFormatter.roundingMode = .down
+        let numberString = secondsFormatter.string(for: secondsFloat)
+        let seconds = Int(Float(numberString!)! * 100.0)
+        
+        let timeComponents = NSDateComponents()
+        timeComponents.hour = hours
+        timeComponents.minute = minutes
+        timeComponents.second = seconds
+        
+        return timeComponents
     }
     
     func getShareUserDefaults() {
@@ -97,5 +149,25 @@ class MainCoordinator: Coordinator {
         let articleToDelete = fetchedResultsController.object(at: indexPath)
         coreDataManager.viewContext.delete(articleToDelete)
         coreDataManager.saveContext()
+    }
+    
+    func parseArticle(_ articleToParse: String) -> String {
+        do {
+            let doc = try SwiftSoup.parseBodyFragment(articleToParse)
+            let element = try doc.text()
+            return element
+        } catch Exception.Error(let type, let message) {
+            print(message)
+        } catch {
+            print("error")
+        }
+        
+        return "Error parsing article, please try again."
+    }
+}
+
+extension MainCoordinator: ListTableViewControllerDelegate {
+    func listTableViewController(_ listTableViewController: ListTableViewController, article: Article) {
+        readArticle(article)
     }
 }

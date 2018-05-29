@@ -7,15 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CAEC0B38E319ED5C83A860C /* Pods_TTSShareExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECDE0BE6C1EE3317C2CB0B44 /* Pods_TTSShareExtension.framework */; };
+		43A65D07D0E8C9D359954150 /* Pods_TTSReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3E3716B71F73406E7EA6C42 /* Pods_TTSReader.framework */; };
 		4B2CFF1220ADB86A0021C795 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2CFF1120ADB86A0021C795 /* ListTableViewController.swift */; };
 		4B2CFF1A20AE69E00021C795 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2CFF1920AE69E00021C795 /* ShareViewController.swift */; };
 		4B2CFF1D20AE69E00021C795 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2CFF1B20AE69E00021C795 /* MainInterface.storyboard */; };
 		4B2CFF2120AE69E00021C795 /* TTSShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4B2CFF1720AE69E00021C795 /* TTSShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4B2CFF3320AEEE9C0021C795 /* TTSReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B5ABF20AB16D9004ACA6C /* TTSReader.xcdatamodeld */; };
+		4B31E6F220B31BEA0091FA6A /* ReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B31E6F120B31BEA0091FA6A /* ReaderViewController.swift */; };
 		4B4A2E5C20AC527D00F59C7D /* MercuryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A2E5B20AC527D00F59C7D /* MercuryAPI.swift */; };
 		4B4A2E6020AC76D900F59C7D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A2E5F20AC76D900F59C7D /* CoreDataManager.swift */; };
 		4B4B5AB920AB16D9004ACA6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B5AB820AB16D9004ACA6C /* AppDelegate.swift */; };
-		4B4B5ABB20AB16D9004ACA6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B5ABA20AB16D9004ACA6C /* ViewController.swift */; };
 		4B4B5ABE20AB16D9004ACA6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B5ABC20AB16D9004ACA6C /* Main.storyboard */; };
 		4B4B5AC120AB16D9004ACA6C /* TTSReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B5ABF20AB16D9004ACA6C /* TTSReader.xcdatamodeld */; };
 		4B4B5AC320AB16DA004ACA6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B5AC220AB16DA004ACA6C /* Assets.xcassets */; };
@@ -54,6 +56,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		13C1A06CBBC76439C9B7005B /* Pods-TTSReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTSReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TTSReader/Pods-TTSReader.debug.xcconfig"; sourceTree = "<group>"; };
 		4B2CFF1120ADB86A0021C795 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		4B2CFF1720AE69E00021C795 /* TTSShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TTSShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2CFF1920AE69E00021C795 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -61,11 +64,11 @@
 		4B2CFF1E20AE69E00021C795 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B2CFF2620AE6CAA0021C795 /* TTSReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TTSReader.entitlements; sourceTree = "<group>"; };
 		4B2CFF2720AE6CBC0021C795 /* TTSShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TTSShareExtension.entitlements; sourceTree = "<group>"; };
+		4B31E6F120B31BEA0091FA6A /* ReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderViewController.swift; sourceTree = "<group>"; };
 		4B4A2E5B20AC527D00F59C7D /* MercuryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MercuryAPI.swift; sourceTree = "<group>"; };
 		4B4A2E5F20AC76D900F59C7D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		4B4B5AB520AB16D9004ACA6C /* TTSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4B5AB820AB16D9004ACA6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4B4B5ABA20AB16D9004ACA6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4B4B5ABD20AB16D9004ACA6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B4B5AC020AB16D9004ACA6C /* TTSReader.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TTSReader.xcdatamodel; sourceTree = "<group>"; };
 		4B4B5AC220AB16DA004ACA6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,6 +81,11 @@
 		4B4B5ADD20AB2967004ACA6C /* MercuryClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MercuryClient.swift; sourceTree = "<group>"; };
 		4B4B5ADF20AB2ABE004ACA6C /* MercuryConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MercuryConstants.swift; sourceTree = "<group>"; };
 		4B4B5AE120AB3233004ACA6C /* MercuryJSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MercuryJSONResponse.swift; sourceTree = "<group>"; };
+		9FE4B85500ECC9344E23A6AA /* Pods-TTSShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTSShareExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-TTSShareExtension/Pods-TTSShareExtension.release.xcconfig"; sourceTree = "<group>"; };
+		C0C23A3E3267EF6516A32A99 /* Pods-TTSShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTSShareExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TTSShareExtension/Pods-TTSShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		ECDE0BE6C1EE3317C2CB0B44 /* Pods_TTSShareExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TTSShareExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3E3716B71F73406E7EA6C42 /* Pods_TTSReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TTSReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDE4E2A464859B681013439D /* Pods-TTSReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTSReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-TTSReader/Pods-TTSReader.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CAEC0B38E319ED5C83A860C /* Pods_TTSShareExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43A65D07D0E8C9D359954150 /* Pods_TTSReader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +144,8 @@
 				4B4B5AB720AB16D9004ACA6C /* TTSReader */,
 				4B2CFF1820AE69E00021C795 /* TTSShareExtension */,
 				4B4B5AB620AB16D9004ACA6C /* Products */,
+				5174550399EF30ABCC37EABD /* Pods */,
+				DB122098F8ADA28EFCEAB421 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -217,7 +229,7 @@
 		4B4B5AD920AB1A2A004ACA6C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				4B4B5ABA20AB16D9004ACA6C /* ViewController.swift */,
+				4B31E6F120B31BEA0091FA6A /* ReaderViewController.swift */,
 				4B2CFF1120ADB86A0021C795 /* ListTableViewController.swift */,
 			);
 			path = ViewControllers;
@@ -232,6 +244,26 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		5174550399EF30ABCC37EABD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				13C1A06CBBC76439C9B7005B /* Pods-TTSReader.debug.xcconfig */,
+				FDE4E2A464859B681013439D /* Pods-TTSReader.release.xcconfig */,
+				C0C23A3E3267EF6516A32A99 /* Pods-TTSShareExtension.debug.xcconfig */,
+				9FE4B85500ECC9344E23A6AA /* Pods-TTSShareExtension.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DB122098F8ADA28EFCEAB421 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3E3716B71F73406E7EA6C42 /* Pods_TTSReader.framework */,
+				ECDE0BE6C1EE3317C2CB0B44 /* Pods_TTSShareExtension.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -239,6 +271,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B2CFF2220AE69E00021C795 /* Build configuration list for PBXNativeTarget "TTSShareExtension" */;
 			buildPhases = (
+				FF5D9EF2929EA9CAF7C496C1 /* [CP] Check Pods Manifest.lock */,
 				4B2CFF1320AE69E00021C795 /* Sources */,
 				4B2CFF1420AE69E00021C795 /* Frameworks */,
 				4B2CFF1520AE69E00021C795 /* Resources */,
@@ -256,10 +289,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B4B5ACA20AB16DA004ACA6C /* Build configuration list for PBXNativeTarget "TTSReader" */;
 			buildPhases = (
+				F37843323FC599502BB427F4 /* [CP] Check Pods Manifest.lock */,
 				4B4B5AB120AB16D9004ACA6C /* Sources */,
 				4B4B5AB220AB16D9004ACA6C /* Frameworks */,
 				4B4B5AB320AB16D9004ACA6C /* Resources */,
 				4B2CFF2520AE69E00021C795 /* Embed App Extensions */,
+				7D629DCC78A9D5F441477B47 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -293,6 +328,9 @@
 						CreatedOnToolsVersion = 9.3;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
 						};
@@ -339,6 +377,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7D629DCC78A9D5F441477B47 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TTSReader/Pods-TTSReader-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TTSReader/Pods-TTSReader-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F37843323FC599502BB427F4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TTSReader-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF5D9EF2929EA9CAF7C496C1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TTSShareExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4B2CFF1320AE69E00021C795 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -356,12 +451,12 @@
 				4B4B5AE220AB3233004ACA6C /* MercuryJSONResponse.swift in Sources */,
 				4B4B5ACE20AB1700004ACA6C /* Coordinator.swift in Sources */,
 				4B4B5AD220AB17E2004ACA6C /* MainCoordinator.swift in Sources */,
-				4B4B5ABB20AB16D9004ACA6C /* ViewController.swift in Sources */,
 				4B4B5ADC20AB1BBA004ACA6C /* NetworkManager.swift in Sources */,
 				4B2CFF1220ADB86A0021C795 /* ListTableViewController.swift in Sources */,
 				4B4B5ADE20AB2967004ACA6C /* MercuryClient.swift in Sources */,
 				4B4A2E6020AC76D900F59C7D /* CoreDataManager.swift in Sources */,
 				4B4B5AD020AB1746004ACA6C /* Storyboarded.swift in Sources */,
+				4B31E6F220B31BEA0091FA6A /* ReaderViewController.swift in Sources */,
 				4B4B5AB920AB16D9004ACA6C /* AppDelegate.swift in Sources */,
 				4B4A2E5C20AC527D00F59C7D /* MercuryAPI.swift in Sources */,
 				4B4B5AE020AB2ABE004ACA6C /* MercuryConstants.swift in Sources */,
@@ -409,6 +504,7 @@
 /* Begin XCBuildConfiguration section */
 		4B2CFF2320AE69E00021C795 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0C23A3E3267EF6516A32A99 /* Pods-TTSShareExtension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TTSShareExtension/TTSShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -429,6 +525,7 @@
 		};
 		4B2CFF2420AE69E00021C795 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FE4B85500ECC9344E23A6AA /* Pods-TTSShareExtension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TTSShareExtension/TTSShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -563,6 +660,7 @@
 		};
 		4B4B5ACB20AB16DA004ACA6C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13C1A06CBBC76439C9B7005B /* Pods-TTSReader.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -583,6 +681,7 @@
 		};
 		4B4B5ACC20AB16DA004ACA6C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDE4E2A464859B681013439D /* Pods-TTSReader.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

@@ -9,11 +9,17 @@
 import UIKit
 import CoreData
 
+protocol ListTableViewControllerDelegate: class {
+    func listTableViewController(_ listTableViewController: ListTableViewController, article: Article)
+}
+
 class ListTableViewController: UITableViewController, Storyboarded {
     
     let cellIdentifier = "articleCell"
     
     weak var coordinator: MainCoordinator?
+    
+    public weak var delegate: ListTableViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +34,8 @@ class ListTableViewController: UITableViewController, Storyboarded {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let article = coordinator?.fetchedResultsController.object(at: indexPath)
-        print(article?.title)
+        self.delegate?.listTableViewController(self, article: article!)
+        print(article?.title ?? "No title")
     }
 
     // MARK: - Table view data source

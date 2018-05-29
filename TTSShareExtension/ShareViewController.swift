@@ -46,7 +46,7 @@ class ShareViewController: UIViewController {
     
     func setUpArray() {
         guard (shareDefaults?.value(forKey: urlArrayKey)) != nil else {
-            var urlArray: [String] = []
+            let urlArray: [String] = []
             shareDefaults?.setValue(urlArray, forKey: urlArrayKey)
             return
         }
@@ -60,7 +60,7 @@ class ShareViewController: UIViewController {
     }
     
     func printUrl() {
-        var urlArray = shareDefaults?.value(forKey: urlArrayKey) as! [String]
+        let urlArray = shareDefaults?.value(forKey: urlArrayKey) as! [String]
         for url in urlArray {
             print(url)
         }
