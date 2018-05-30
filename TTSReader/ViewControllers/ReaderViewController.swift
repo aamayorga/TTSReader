@@ -14,6 +14,7 @@ class ReaderViewController: UIViewController, Storyboarded {
     
     weak var coordinator: MainCoordinator?
     var article: Article!
+    var previousSelectedRange: NSRange?
     
     let speechSynthesizer = AVSpeechSynthesizer()
     let articleTimeToRead = NSDateComponents()
@@ -120,6 +121,56 @@ class ReaderViewController: UIViewController, Storyboarded {
     @objc func stopCom() {
         print("Stop command")
     }
+    
+    fileprivate func highlightCurrentlyReadWord(_ characterRange: NSRange) {
+        let rangeInTotalText = NSMakeRange(characterRange.location, characterRange.length)
+        
+        let currentAttributes = scrollableTextView.attributedText.attributes(at: rangeInTotalText.location, effectiveRange: nil)
+        
+        let attributedString = NSMutableAttributedString(string: scrollableTextView.attributedText.attributedSubstring(from: rangeInTotalText).string)
+        attributedString.addAttribute(NSAttributedStringKey.backgroundColor, value: UIColor.lightGray, range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttributes(currentAttributes, range: NSMakeRange(0, attributedString.length))
+        
+        scrollableTextView.scrollRangeToVisible(rangeInTotalText)
+        
+        scrollableTextView.textStorage.beginEditing()
+        
+        scrollableTextView.textStorage.replaceCharacters(in: rangeInTotalText, with: attributedString)
+        
+        if let previousRange = previousSelectedRange {
+            let previousAttributedText = NSMutableAttributedString(string: scrollableTextView.attributedText.attributedSubstring(from: previousRange).string)
+            previousAttributedText.addAttribute(NSAttributedStringKey.backgroundColor, value: UIColor.clear, range: NSMakeRange(0, previousAttributedText.length))
+            previousAttributedText.addAttributes(currentAttributes, range: NSMakeRange(0, previousAttributedText.length))
+            
+            scrollableTextView.textStorage.replaceCharacters(in: previousRange, with: previousAttributedText)
+        }
+        
+        scrollableTextView.textStorage.endEditing()
+        
+        previousSelectedRange = rangeInTotalText
+    }
+    
+    func unselectLastWord() {
+        if let selectedRange = previousSelectedRange {
+            // Get the attributes of the last selected attributed word.
+            let currentAttributes = scrollableTextView.attributedText.attributes(at: selectedRange.location, effectiveRange: nil)
+            
+            // Keep the font attribute.
+            let fontAttribute = currentAttributes[NSAttributedStringKey.font]
+            
+            // Create a new mutable attributed string using the last selected word.
+            let attributedWord = NSMutableAttributedString(string: scrollableTextView.attributedText.attributedSubstring(from: selectedRange).string)
+            
+            // Set the previous font attribute, and make the foreground color black.
+            attributedWord.addAttribute(NSAttributedStringKey.backgroundColor, value: UIColor.clear, range: NSMakeRange(0, attributedWord.length))
+            attributedWord.addAttribute(NSAttributedStringKey.font, value: fontAttribute!, range: NSMakeRange(0, attributedWord.length))
+            
+            // Update the text storage property and replace the last selected word with the new attributed string.
+            scrollableTextView.textStorage.beginEditing()
+            scrollableTextView.textStorage.replaceCharacters(in: selectedRange, with: attributedWord)
+            scrollableTextView.textStorage.endEditing()
+        }
+    }
 }
 
 extension ReaderViewController: AVSpeechSynthesizerDelegate {
@@ -130,6 +181,7 @@ extension ReaderViewController: AVSpeechSynthesizerDelegate {
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         print("Finish")
+        unselectLastWord()
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didContinue utterance: AVSpeechUtterance) {
@@ -144,9 +196,11 @@ extension ReaderViewController: AVSpeechSynthesizerDelegate {
         print("Cancel")
     }
     
+    
+    
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) {
-        print(characterRange, " Location")
-        print(utterance.speechString.count, " Speech")
+        
+        highlightCurrentlyReadWord(characterRange)
         
         timeScrubber.setValue(Float(Double(characterRange.location)/Double(utterance.speechString.count)), animated: true)
     }
