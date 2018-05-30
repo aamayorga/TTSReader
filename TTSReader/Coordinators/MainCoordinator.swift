@@ -64,10 +64,19 @@ class MainCoordinator: NSObject, Coordinator {
     func getArticle(_ articleUrl: String) {
         MercuryClient().getWebArticle(articleUrl) { (success, data, error) in
             print(success)
+            
             guard success else {
                 print(error!)
+                
+                self.deleteShareUserDefaults(articleUrl)
+                
+                let alert = UIAlertController(title: "Error", message: "\(error ?? "Invalid URL") \n\n\(articleUrl)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: nil))
+                self.navigationController.present(alert, animated: true, completion: nil)
+                
                 return
             }
+            
             self.saveArticle(data!)
             self.deleteShareUserDefaults(articleUrl)
         }
@@ -163,6 +172,12 @@ class MainCoordinator: NSObject, Coordinator {
         }
         
         return "Error parsing article, please try again."
+    }
+    
+    func checkURL(url: String ) -> Bool {
+        let urlRegEx = "^http(?:s)?://(?:w{3}\\.)?(?!w{3}\\.)(?:[\\p{L}a-zA-Z0-9\\-]+\\.){1,}(?:[\\p{L}a-zA-Z]{2,})/(?:\\S*)?$"
+        let urlTest = NSPredicate(format: "SELF MATCHES %@", urlRegEx)
+        return urlTest.evaluate(with: url)
     }
 }
 

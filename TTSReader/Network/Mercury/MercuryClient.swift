@@ -24,7 +24,8 @@ class MercuryClient {
         networkManager.taskForGetMethod(request: request, completionHandlerForGET: { (data, error) in
             
             guard (error == nil) else {
-                completionHandlerForGetWebArticle(false, nil, "Couldn't retrieve data")
+                let url = methodParameters[MercuryParameterKeys.Url]
+                completionHandlerForGetWebArticle(false, nil, "Couldn't retrieve article.")
                 return
             }
             
@@ -35,7 +36,7 @@ class MercuryClient {
             
             self.convertData(data as! Data, completionHandlerForConvertData: { (results, error) in
                 guard error == nil else {
-                    completionHandlerForGetWebArticle(false, nil, error?.userInfo.description)
+                    completionHandlerForGetWebArticle(false, nil, error?.userInfo[NSLocalizedDescriptionKey] as? String)
                     return
                 }
                 
@@ -58,7 +59,7 @@ class MercuryClient {
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             parsedResult = try decoder.decode(MercuryJSONResponse.self, from: data) as AnyObject
         } catch {
-            let userInfo = [NSLocalizedDescriptionKey: "Could not parse the data as JSON '\(data)'"]
+            let userInfo = [NSLocalizedDescriptionKey: "Could not parse the data into readable format"]
             completionHandlerForConvertData(nil, NSError(domain: "convertData", code: 1, userInfo: userInfo))
             return
         }

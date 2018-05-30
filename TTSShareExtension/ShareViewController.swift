@@ -14,16 +14,13 @@ class ShareViewController: UIViewController {
     let urlArrayKey = "temporaryUrlArray"
     let shareDefaults = UserDefaults(suiteName: "group.amayorga")
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var label: UILabel!
-    
-    @IBAction func cancel(_ sender: UIButton) {
-        self.extensionContext?.cancelRequest(withError: NSError.init(domain: "Share Extention", code: 1, userInfo: nil))
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.perform(#selector(leave), with: nil, afterDelay: 2.0)
+        self.perform(#selector(leave), with: nil, afterDelay: 1.5)
     }
     
     override func beginRequest(with context: NSExtensionContext) {
@@ -33,14 +30,14 @@ class ShareViewController: UIViewController {
 
         if itemProvider.hasItemConformingToTypeIdentifier("public.url") {
             itemProvider.loadItem(forTypeIdentifier: "public.url", options: nil) { (url, error) in
-                print("We did something?", url!)
                 let url = url as! URL
                 self.setUpArray()
                 self.saveUrl(url: url)
             }
         } else {
-            print("We did a no no", itemProvider)
+            print("Didn't find URL", itemProvider)
             self.label.text = "Error!"
+            self.activityIndicator.stopAnimating()
         }
     }
     
@@ -57,6 +54,8 @@ class ShareViewController: UIViewController {
         urlArray.append(url.absoluteString)
         shareDefaults?.setValue(urlArray, forKey: urlArrayKey)
         printUrl()
+        label.text = "Saved!"
+        activityIndicator.stopAnimating()
     }
     
     func printUrl() {
@@ -75,12 +74,7 @@ class ShareViewController: UIViewController {
 
 //MARK: NSItemProvider check
 extension NSItemProvider {
-
     var isURL: Bool {
         return hasItemConformingToTypeIdentifier(kUTTypeURL as String)
-    }
-
-    var isText: Bool {
-        return hasItemConformingToTypeIdentifier(kUTTypeText as String)
     }
 }
