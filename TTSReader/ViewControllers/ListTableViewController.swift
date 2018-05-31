@@ -16,6 +16,7 @@ protocol ListTableViewControllerDelegate: class {
 class ListTableViewController: UITableViewController, Storyboarded {
     
     let cellIdentifier = "articleCell"
+    let activityIndicator = UIActivityIndicatorView()
     
     weak var coordinator: MainCoordinator?
     
@@ -26,6 +27,12 @@ class ListTableViewController: UITableViewController, Storyboarded {
 
         self.clearsSelectionOnViewWillAppear = true
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        let barButton = UIBarButtonItem(customView: activityIndicator)
+        self.navigationItem.setLeftBarButton(barButton, animated: true)
+        activityIndicator.activityIndicatorViewStyle = .gray
+        coordinator?.animateActivityIndicator()
         
         coordinator?.fetchedResultsController.delegate = self
     }

@@ -34,12 +34,12 @@ class MainCoordinator: NSObject, Coordinator {
     }
     
     func start() {
-        getShareUserDefaults()
-        getFetchController()
-        
         let vc = ListTableViewController.instantiate()
         vc.coordinator = self
         vc.delegate = self
+        
+        getShareUserDefaults()
+        getFetchController()
         
         navigationController.pushViewController(vc, animated: false)
     }
@@ -122,6 +122,25 @@ class MainCoordinator: NSObject, Coordinator {
         var urlArray = UserDefaults(suiteName: UserDefaultSuiteName)?.value(forKey: UserDefaultsKey) as! [String]
         urlArray.remove(at: urlArray.index(of: urlToDelete)!)
         UserDefaults(suiteName: UserDefaultSuiteName)?.set(urlArray, forKey: UserDefaultsKey)
+        
+        animateActivityIndicator()
+    }
+    
+    func animateActivityIndicator() {
+        guard let listTableVC = navigationController.viewControllers[0] as? ListTableViewController else {
+            print("First view controller isn't a ListTableViewController")
+            return
+        }
+        
+        let urlArray = UserDefaults(suiteName: UserDefaultSuiteName)?.value(forKey: UserDefaultsKey) as! [String]
+        
+        DispatchQueue.main.async {
+            if urlArray.isEmpty {
+                listTableVC.activityIndicator.stopAnimating()
+            } else {
+                listTableVC.activityIndicator.startAnimating()
+            }
+        }
     }
     
     func getFetchController() {
