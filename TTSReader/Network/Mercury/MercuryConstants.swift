@@ -22,7 +22,7 @@ extension MercuryClient {
     
     struct MercuryHTTPHeaderValues {
         static let applicationJSON = "application/json"
-        static let ApiKey = MercuryClient.ApiKey
+        static let ApiKey = MercuryClient.ApiKey // REPLACE THIS LINE
     }
     
     struct MercuryParameterKeys {
