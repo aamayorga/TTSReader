@@ -14,11 +14,15 @@ let UserDefaultSuiteName = "group.amayorga"
 let UserDefaultsKey = "temporaryUrlArray"
 
 class MainCoordinator: NSObject, Coordinator {
+    
+    let speechSynthesizer = AVSpeechSynthesizer()
+    
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     var coreDataManager: CoreDataManager!
     var fetchedResultsController: NSFetchedResultsController<Article>!
     weak var delegate: ListTableViewControllerDelegate?
+    var currentlyBeingReadIndexPath: IndexPath?
     
     var wordsPerMinute: Float = 235.0 {
         didSet {
@@ -46,11 +50,13 @@ class MainCoordinator: NSObject, Coordinator {
     
     // MARK: Article functions
     
-    func readArticle(_ articleToRead: Article) {
+    func readArticle(_ articleToRead: Article, _ indexPath: IndexPath) {
         let vc = ReaderViewController.instantiate()
         vc.coordinator = self
         vc.article = articleToRead
         vc.activatePlaybackCommands(true)
+        vc.currentArticleIndexPath = indexPath
+        speechSynthesizer.delegate = vc as AVSpeechSynthesizerDelegate
         
         let timeComponents = estimateArticleReadTime(articleToRead.wordCount)
         
@@ -107,12 +113,16 @@ class MainCoordinator: NSObject, Coordinator {
     }
     
     func getShareUserDefaults() {
-        let urlArray = UserDefaults(suiteName: UserDefaultSuiteName)?.value(forKey: UserDefaultsKey) as! [String]
+        let urlArray = UserDefaults(suiteName: UserDefaultSuiteName)?.value(forKey: UserDefaultsKey) as? [String]
+        guard (urlArray != nil) else {
+            print("nil array")
+            return
+        }
         guard urlArray != [] else {
             print("Nothing in array")
             return
         }
-        for url in urlArray {
+        for url in urlArray! {
             getArticle(url)
             print(url)
         }
@@ -132,10 +142,15 @@ class MainCoordinator: NSObject, Coordinator {
             return
         }
         
-        let urlArray = UserDefaults(suiteName: UserDefaultSuiteName)?.value(forKey: UserDefaultsKey) as! [String]
+        let urlArray = UserDefaults(suiteName: UserDefaultSuiteName)?.value(forKey: UserDefaultsKey) as? [String]
+        
+        guard (urlArray != nil) else {
+            print("nil array")
+            return
+        }
         
         DispatchQueue.main.async {
-            if urlArray.isEmpty {
+            if urlArray!.isEmpty {
                 listTableVC.activityIndicator.stopAnimating()
             } else {
                 listTableVC.activityIndicator.startAnimating()
@@ -175,6 +190,11 @@ class MainCoordinator: NSObject, Coordinator {
     
     func deleteArticle(_ indexPath: IndexPath) {
         let articleToDelete = fetchedResultsController.object(at: indexPath)
+        
+        if (indexPath == currentlyBeingReadIndexPath) {
+            speechSynthesizer.stopSpeaking(at: .immediate)
+        }
+        
         coreDataManager.viewContext.delete(articleToDelete)
         coreDataManager.saveContext()
     }
@@ -198,10 +218,57 @@ class MainCoordinator: NSObject, Coordinator {
         let urlTest = NSPredicate(format: "SELF MATCHES %@", urlRegEx)
         return urlTest.evaluate(with: url)
     }
+    
+    func playPauseReading(_ articleText: String, _ articleToBeRead: Article) {
+        if isArticleDifferent(articleToBeRead) {
+            speechSynthesizer.stopSpeaking(at: .immediate)
+            
+            let nextSpeechUtterance = AVSpeechUtterance(string: articleText)
+            nextSpeechUtterance.rate = 0.6
+            
+            speechSynthesizer.speak(nextSpeechUtterance)
+        } else if speechSynthesizer.isPaused {
+            speechSynthesizer.continueSpeaking()
+        } else if speechSynthesizer.isSpeaking {
+            speechSynthesizer.pauseSpeaking(at: AVSpeechBoundary.immediate)
+        } else {
+            speechSynthesizer.stopSpeaking(at: .immediate)
+            
+             let nextSpeechUtterance = AVSpeechUtterance(string: articleText)
+            nextSpeechUtterance.rate = 0.6
+            
+            speechSynthesizer.speak(nextSpeechUtterance)
+        }
+        
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(AVAudioSessionCategoryPlayback, with: [])
+        } catch {
+            print("Error with Audio playback")
+        }
+    }
+    
+    func isArticleDifferent(_ article: Article) -> Bool {
+        if (fetchedResultsController.indexPath(forObject: article) == currentlyBeingReadIndexPath) {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    func changeArticleBeingRead(_ articleBeingRead: Article) {
+        
+        let newArticleIndexPath = fetchedResultsController.indexPath(forObject: articleBeingRead)
+        
+        if currentlyBeingReadIndexPath == nil || currentlyBeingReadIndexPath != newArticleIndexPath {
+            currentlyBeingReadIndexPath = newArticleIndexPath
+        }
+    }
 }
 
 extension MainCoordinator: ListTableViewControllerDelegate {
-    func listTableViewController(_ listTableViewController: ListTableViewController, article: Article) {
-        readArticle(article)
+    func listTableViewController(_ listTableViewController: ListTableViewController, article: Article, indexPath: IndexPath) {
+        readArticle(article, indexPath)
     }
 }
+

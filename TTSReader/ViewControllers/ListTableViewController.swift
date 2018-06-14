@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 protocol ListTableViewControllerDelegate: class {
-    func listTableViewController(_ listTableViewController: ListTableViewController, article: Article)
+    func listTableViewController(_ listTableViewController: ListTableViewController, article: Article, indexPath: IndexPath)
 }
 
 class ListTableViewController: UITableViewController, Storyboarded {
@@ -41,7 +41,7 @@ class ListTableViewController: UITableViewController, Storyboarded {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let article = coordinator?.fetchedResultsController.object(at: indexPath)
-        self.delegate?.listTableViewController(self, article: article!)
+        self.delegate?.listTableViewController(self, article: article!, indexPath: indexPath)
         print(article?.title ?? "No title")
     }
 
@@ -96,5 +96,4 @@ extension ListTableViewController:NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
-    
 }

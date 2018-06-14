@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NetworkManager: NSObject {
+class NetworkManager {
     func taskForGetMethod(request: NSMutableURLRequest, completionHandlerForGET: @escaping (_ results: AnyObject?, _ error: Error?) -> Void) {
         
         let urlTask = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in

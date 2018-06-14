@@ -15,8 +15,8 @@ class ReaderViewController: UIViewController, Storyboarded {
     weak var coordinator: MainCoordinator?
     var article: Article!
     var previousSelectedRange: NSRange?
+    var currentArticleIndexPath: IndexPath!
     
-    let speechSynthesizer = AVSpeechSynthesizer()
     let articleTimeToRead = NSDateComponents()
     
     fileprivate let remoteCommandCenter = MPRemoteCommandCenter.shared()
@@ -70,48 +70,29 @@ class ReaderViewController: UIViewController, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        speechSynthesizer.delegate = self
-        
         scrollableTextView.text = coordinator?.parseArticle(article.content!)
         
         totalTimeLabel.text = String(format: "%02i:%02i:%02i", articleTimeToRead.hour, articleTimeToRead.minute, articleTimeToRead.second)
     }
     
     @objc func resumeReading() {
-        let articleText = scrollableTextView.text
-        let nextSpeechUtterance = AVSpeechUtterance(string: articleText!)
-        nextSpeechUtterance.rate = 0.6
-        
-        if speechSynthesizer.isPaused {
-            speechSynthesizer.continueSpeaking()
-        } else if speechSynthesizer.isSpeaking {
-            speechSynthesizer.pauseSpeaking(at: AVSpeechBoundary.immediate)
-        } else {
-            speechSynthesizer.speak(nextSpeechUtterance)
-        }
-        
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setCategory(AVAudioSessionCategoryPlayback, with: [])
-        } catch {
-            print("Error with Audio playback")
-        }
+        coordinator?.playPauseReading(scrollableTextView.text, article)
     }
     
     @objc func nextTrack() {
-        print("Next Track")
-        
-        let articleText = scrollableTextView.text
-        
-        let nextSpeechUtterance = AVSpeechUtterance(string: articleText!)
-        
-        if speechSynthesizer.isPaused {
-            speechSynthesizer.continueSpeaking()
-        } else if speechSynthesizer.isSpeaking {
-            speechSynthesizer.pauseSpeaking(at: AVSpeechBoundary.immediate)
-        } else {
-            speechSynthesizer.speak(nextSpeechUtterance)
-        }
+//        print("Next Track")
+//
+//        let articleText = scrollableTextView.text
+//
+//        let nextSpeechUtterance = AVSpeechUtterance(string: articleText!)
+//
+//        if speechSynthesizer.isPaused {
+//            speechSynthesizer.continueSpeaking()
+//        } else if speechSynthesizer.isSpeaking {
+//            speechSynthesizer.pauseSpeaking(at: AVSpeechBoundary.immediate)
+//        } else {
+//            speechSynthesizer.speak(nextSpeechUtterance)
+//        }
     }
     
     @objc func previousTrack() {
@@ -177,6 +158,7 @@ extension ReaderViewController: AVSpeechSynthesizerDelegate {
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
         print("Start")
+        coordinator?.changeArticleBeingRead(article)
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
@@ -195,8 +177,6 @@ extension ReaderViewController: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
         print("Cancel")
     }
-    
-    
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) {
         
