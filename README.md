@@ -8,3 +8,9 @@
 ## Usage
 * Download and save articles from your favorite news websites.
 * Have your saved articles be read back, so all you need to do is listen!
+
+## Screenshots
+![TTSReaderShareSheet](Screenshots/ShareSheet.png)
+![TTSReaderSaved](Screenshots/Saved.png)
+![TTSReaderArticleList](Screenshots/ArticleList.png)
+![TTSReaderArticleReader](Screenshots/ArticleReader.png)
