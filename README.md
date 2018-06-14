@@ -19,12 +19,10 @@
 
 Delete this file:
 
-```MercuryAPI.swift
-```
+```MercuryAPI.swift```
 
 Go to https://mercury.postlight.com/web-parser/ to get your own API key
 
 Replace line in MercuryConstants.swift with your API Key:
 
-```static let ApiKey = MercuryClient.ApiKey // REPLACE THIS LINE
-```
+```static let ApiKey = MercuryClient.ApiKey // REPLACE THIS LINE```
