@@ -30,11 +30,18 @@ class ListTableViewController: UITableViewController, Storyboarded {
         
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         let barButton = UIBarButtonItem(customView: activityIndicator)
-        self.navigationItem.setLeftBarButton(barButton, animated: true)
+        let addArticleButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addArticle))
+        
+        self.navigationItem.leftBarButtonItems = [barButton]
+        
         activityIndicator.activityIndicatorViewStyle = .gray
         coordinator?.animateActivityIndicator()
         
         coordinator?.fetchedResultsController.delegate = self
+    }
+    
+    @objc func addArticle() {
+        coordinator?.addArticle()
     }
     
     // MARK: - Table view delegate

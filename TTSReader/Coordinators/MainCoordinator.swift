@@ -23,6 +23,7 @@ class MainCoordinator: NSObject, Coordinator {
     var fetchedResultsController: NSFetchedResultsController<Article>!
     weak var delegate: ListTableViewControllerDelegate?
     var currentlyBeingReadIndexPath: IndexPath?
+    var urlTextField: UITextField?
     
     var wordsPerMinute: Float = 235.0 {
         didSet {
@@ -42,13 +43,47 @@ class MainCoordinator: NSObject, Coordinator {
         vc.coordinator = self
         vc.delegate = self
         
-        getShareUserDefaults()
         getFetchController()
         
         navigationController.pushViewController(vc, animated: false)
+        
+        getShareUserDefaults()
     }
     
     // MARK: Article functions
+    
+    func addArticle() {
+        print("Add something")
+        
+        let alertController = UIAlertController(title: "Enter web article URL",
+                                                message: nil,
+                                                preferredStyle: .alert)
+        
+        alertController.addTextField(configurationHandler: urlTextField)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: self.okHandler)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        navigationController.present(alertController, animated: true, completion: nil)
+    }
+    
+    func okHandler(alert: UIAlertAction) {
+        print("OK")
+        if checkURL(url: (urlTextField?.text)!) {
+            getArticle((urlTextField?.text)!)
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Invalid URL", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: nil))
+            self.navigationController.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func urlTextField(textField: UITextField) {
+        urlTextField = textField
+    }
     
     func readArticle(_ articleToRead: Article, _ indexPath: IndexPath) {
         let vc = ReaderViewController.instantiate()
@@ -68,6 +103,8 @@ class MainCoordinator: NSObject, Coordinator {
     }
     
     func getArticle(_ articleUrl: String) {
+        animateActivityIndicator()
+        
         MercuryClient().getWebArticle(articleUrl) { (success, data, error) in
             print(success)
             
@@ -129,9 +166,14 @@ class MainCoordinator: NSObject, Coordinator {
     }
     
     func deleteShareUserDefaults(_ urlToDelete: String) {
-        var urlArray = UserDefaults(suiteName: UserDefaultSuiteName)?.value(forKey: UserDefaultsKey) as! [String]
-        urlArray.remove(at: urlArray.index(of: urlToDelete)!)
-        UserDefaults(suiteName: UserDefaultSuiteName)?.set(urlArray, forKey: UserDefaultsKey)
+        guard var urlArray = UserDefaults(suiteName: UserDefaultSuiteName)?.value(forKey: UserDefaultsKey) as! [String]? else {
+            return
+        }
+        
+        if urlArray != [] {
+            urlArray.remove(at: urlArray.index(of: urlToDelete)!)
+            UserDefaults(suiteName: UserDefaultSuiteName)?.set(urlArray, forKey: UserDefaultsKey)
+        }
         
         animateActivityIndicator()
     }
