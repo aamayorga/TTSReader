@@ -29,7 +29,7 @@ class CoreDataManager {
         }
     }
     
-    func saveContext () {
+    func saveContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {

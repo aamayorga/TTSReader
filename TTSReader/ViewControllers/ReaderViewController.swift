@@ -67,12 +67,32 @@ class ReaderViewController: UIViewController, Storyboarded {
         remoteCommandCenter.previousTrackCommand.isEnabled = enable
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //highlightCurrentlyReadWord(NSMakeRange(Int(article.currentWordLocation), Int(article.currentWordLength)))
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+//        if let previousWordRange = previousSelectedRange {
+//            article.currentWordLocation = Int32(previousWordRange.location)
+//            article.currentWordLength = Int16(previousWordRange.length)
+//        }
+//        previousSelectedRange = nil
+//
+//        coordinator?.coreDataManager.saveContext()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollableTextView.text = coordinator?.parseArticle(article.content!)
         
         totalTimeLabel.text = String(format: "%02i:%02i:%02i", articleTimeToRead.hour, articleTimeToRead.minute, articleTimeToRead.second)
+        print("View Loaded")
     }
     
     @objc func resumeReading() {
@@ -106,28 +126,31 @@ class ReaderViewController: UIViewController, Storyboarded {
     fileprivate func highlightCurrentlyReadWord(_ characterRange: NSRange) {
         let rangeInTotalText = NSMakeRange(characterRange.location, characterRange.length)
         
+        // Get attributes of current word
         let currentAttributes = scrollableTextView.attributedText.attributes(at: rangeInTotalText.location, effectiveRange: nil)
         
+        // Get the highlight attributes ready
         let attributedString = NSMutableAttributedString(string: scrollableTextView.attributedText.attributedSubstring(from: rangeInTotalText).string)
         attributedString.addAttribute(NSAttributedStringKey.backgroundColor, value: UIColor.lightGray, range: NSMakeRange(0, attributedString.length))
         attributedString.addAttributes(currentAttributes, range: NSMakeRange(0, attributedString.length))
         
-        scrollableTextView.scrollRangeToVisible(rangeInTotalText)
-        
+        //scrollableTextView.scrollRangeToVisible(rangeInTotalText)
+
         scrollableTextView.textStorage.beginEditing()
-        
+
+        // Change the attributes
         scrollableTextView.textStorage.replaceCharacters(in: rangeInTotalText, with: attributedString)
-        
+
         if let previousRange = previousSelectedRange {
             let previousAttributedText = NSMutableAttributedString(string: scrollableTextView.attributedText.attributedSubstring(from: previousRange).string)
             previousAttributedText.addAttribute(NSAttributedStringKey.backgroundColor, value: UIColor.clear, range: NSMakeRange(0, previousAttributedText.length))
             previousAttributedText.addAttributes(currentAttributes, range: NSMakeRange(0, previousAttributedText.length))
-            
+
             scrollableTextView.textStorage.replaceCharacters(in: previousRange, with: previousAttributedText)
         }
-        
+
         scrollableTextView.textStorage.endEditing()
-        
+
         previousSelectedRange = rangeInTotalText
     }
     
@@ -184,4 +207,5 @@ extension ReaderViewController: AVSpeechSynthesizerDelegate {
         
         timeScrubber.setValue(Float(Double(characterRange.location)/Double(utterance.speechString.count)), animated: true)
     }
+    
 }

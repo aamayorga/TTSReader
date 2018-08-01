@@ -39,6 +39,13 @@
 			remoteGlobalIDString = 4B2CFF1620AE69E00021C795;
 			remoteInfo = TTSShareExtension;
 		};
+		4BEE4C86210F836300154B2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B4B5AAD20AB16D9004ACA6C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4B4B5AB420AB16D9004ACA6C;
+			remoteInfo = TTSReader;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -81,6 +88,7 @@
 		4B4B5ADD20AB2967004ACA6C /* MercuryClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MercuryClient.swift; sourceTree = "<group>"; };
 		4B4B5ADF20AB2ABE004ACA6C /* MercuryConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MercuryConstants.swift; sourceTree = "<group>"; };
 		4B4B5AE120AB3233004ACA6C /* MercuryJSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MercuryJSONResponse.swift; sourceTree = "<group>"; };
+		4BEE4C81210F836300154B2A /* ReaderViewControllerTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReaderViewControllerTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE4B85500ECC9344E23A6AA /* Pods-TTSShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTSShareExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-TTSShareExtension/Pods-TTSShareExtension.release.xcconfig"; sourceTree = "<group>"; };
 		C0C23A3E3267EF6516A32A99 /* Pods-TTSShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTSShareExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TTSShareExtension/Pods-TTSShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		ECDE0BE6C1EE3317C2CB0B44 /* Pods_TTSShareExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TTSShareExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +110,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				43A65D07D0E8C9D359954150 /* Pods_TTSReader.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BEE4C7E210F836300154B2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +169,7 @@
 			children = (
 				4B4B5AB520AB16D9004ACA6C /* TTSReader.app */,
 				4B2CFF1720AE69E00021C795 /* TTSShareExtension.appex */,
+				4BEE4C81210F836300154B2A /* ReaderViewControllerTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -306,13 +322,31 @@
 			productReference = 4B4B5AB520AB16D9004ACA6C /* TTSReader.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4BEE4C80210F836300154B2A /* ReaderViewControllerTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BEE4C8A210F836300154B2A /* Build configuration list for PBXNativeTarget "ReaderViewControllerTest" */;
+			buildPhases = (
+				4BEE4C7D210F836300154B2A /* Sources */,
+				4BEE4C7E210F836300154B2A /* Frameworks */,
+				4BEE4C7F210F836300154B2A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4BEE4C87210F836300154B2A /* PBXTargetDependency */,
+			);
+			name = ReaderViewControllerTest;
+			productName = ReaderViewControllerTest;
+			productReference = 4BEE4C81210F836300154B2A /* ReaderViewControllerTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		4B4B5AAD20AB16D9004ACA6C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = AM;
 				TargetAttributes = {
@@ -335,6 +369,10 @@
 							};
 						};
 					};
+					4BEE4C80210F836300154B2A = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 4B4B5AB420AB16D9004ACA6C;
+					};
 				};
 			};
 			buildConfigurationList = 4B4B5AB020AB16D9004ACA6C /* Build configuration list for PBXProject "TTSReader" */;
@@ -352,6 +390,7 @@
 			targets = (
 				4B4B5AB420AB16D9004ACA6C /* TTSReader */,
 				4B2CFF1620AE69E00021C795 /* TTSShareExtension */,
+				4BEE4C80210F836300154B2A /* ReaderViewControllerTest */,
 			);
 		};
 /* End PBXProject section */
@@ -372,6 +411,13 @@
 				4B4B5AC620AB16DA004ACA6C /* LaunchScreen.storyboard in Resources */,
 				4B4B5AC320AB16DA004ACA6C /* Assets.xcassets in Resources */,
 				4B4B5ABE20AB16D9004ACA6C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BEE4C7F210F836300154B2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +510,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4BEE4C7D210F836300154B2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -471,6 +524,11 @@
 			isa = PBXTargetDependency;
 			target = 4B2CFF1620AE69E00021C795 /* TTSShareExtension */;
 			targetProxy = 4B2CFF1F20AE69E00021C795 /* PBXContainerItemProxy */;
+		};
+		4BEE4C87210F836300154B2A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4B4B5AB420AB16D9004ACA6C /* TTSReader */;
+			targetProxy = 4BEE4C86210F836300154B2A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -700,6 +758,48 @@
 			};
 			name = Release;
 		};
+		4BEE4C88210F836300154B2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7HF92455SQ;
+				INFOPLIST_FILE = ReaderViewControllerTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.amayorga.ReaderViewControllerTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TTSReader.app/TTSReader";
+			};
+			name = Debug;
+		};
+		4BEE4C89210F836300154B2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7HF92455SQ;
+				INFOPLIST_FILE = ReaderViewControllerTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.amayorga.ReaderViewControllerTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TTSReader.app/TTSReader";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -726,6 +826,15 @@
 			buildConfigurations = (
 				4B4B5ACB20AB16DA004ACA6C /* Debug */,
 				4B4B5ACC20AB16DA004ACA6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4BEE4C8A210F836300154B2A /* Build configuration list for PBXNativeTarget "ReaderViewControllerTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BEE4C88210F836300154B2A /* Debug */,
+				4BEE4C89210F836300154B2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

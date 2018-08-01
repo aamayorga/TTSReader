@@ -24,6 +24,7 @@ class MainCoordinator: NSObject, Coordinator {
     weak var delegate: ListTableViewControllerDelegate?
     var currentlyBeingReadIndexPath: IndexPath?
     var urlTextField: UITextField?
+    lazy var readerVC = ReaderViewController.instantiate()
     
     var wordsPerMinute: Float = 235.0 {
         didSet {
@@ -86,20 +87,23 @@ class MainCoordinator: NSObject, Coordinator {
     }
     
     func readArticle(_ articleToRead: Article, _ indexPath: IndexPath) {
-        let vc = ReaderViewController.instantiate()
-        vc.coordinator = self
-        vc.article = articleToRead
-        vc.activatePlaybackCommands(true)
-        vc.currentArticleIndexPath = indexPath
-        speechSynthesizer.delegate = vc as AVSpeechSynthesizerDelegate
+        if readerVC.currentArticleIndexPath != indexPath {
+            speechSynthesizer.stopSpeaking(at: .immediate)
+            readerVC = ReaderViewController.instantiate()
+        }
+        readerVC.coordinator = self
+        readerVC.article = articleToRead
+        readerVC.currentArticleIndexPath = indexPath
+        readerVC.activatePlaybackCommands(true)
+        speechSynthesizer.delegate = readerVC as AVSpeechSynthesizerDelegate
         
         let timeComponents = estimateArticleReadTime(articleToRead.wordCount)
         
-        vc.articleTimeToRead.hour = timeComponents.hour
-        vc.articleTimeToRead.minute = timeComponents.minute
-        vc.articleTimeToRead.second = timeComponents.second
+        readerVC.articleTimeToRead.hour = timeComponents.hour
+        readerVC.articleTimeToRead.minute = timeComponents.minute
+        readerVC.articleTimeToRead.second = timeComponents.second
         
-        navigationController.pushViewController(vc, animated: true)
+        navigationController.pushViewController(readerVC, animated: true)
     }
     
     func getArticle(_ articleUrl: String) {
